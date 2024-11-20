@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override
@@ -140,7 +141,9 @@ class _OnboardingPageState extends State<OnboardingPage>
                           ),
                           const SizedBox(height: 24),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              context.push('/home');
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(2),
                               decoration: BoxDecoration(
@@ -188,7 +191,6 @@ class _OnboardingPageState extends State<OnboardingPage>
   }
 }
 
-// Clipper para criar cortes diagonais maiores
 class DiagonalClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
