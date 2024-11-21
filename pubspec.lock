@@ -176,6 +176,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  line_icons:
+    dependency: "direct main"
+    description:
+      name: line_icons
+      sha256: "249d781d922f5437ac763d9c8f5a02cf5b499a6dc3f85e4b92e074cff0a932ab"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
   lints:
     dependency: transitive
     description:
@@ -216,14 +224,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
-  page_animation_transition:
-    dependency: "direct main"
-    description:
-      name: page_animation_transition
-      sha256: b03dc222c43a1e781c9e828dbc90a6303a3b886fdf0e8d3ee29729aabca9f3eb
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   page_transition:
     dependency: "direct main"
     description:
