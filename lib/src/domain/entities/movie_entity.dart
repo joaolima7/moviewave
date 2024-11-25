@@ -1,4 +1,4 @@
-class Movie {
+class MovieEntity {
   final int id;
   final String title;
   final String originalTitle;
@@ -15,7 +15,7 @@ class Movie {
   final double voteAverage;
   final int voteCount;
 
-  Movie({
+  MovieEntity({
     required this.id,
     required this.title,
     required this.originalTitle,
@@ -33,8 +33,8 @@ class Movie {
     required this.voteCount,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
-    return Movie(
+  factory MovieEntity.fromJson(Map<String, dynamic> json) {
+    return MovieEntity(
       id: json['id'],
       title: json['title'] ?? 'Unknown Title',
       originalTitle: json['original_title'] ?? 'Unknown Original Title',

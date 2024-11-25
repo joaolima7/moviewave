@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:movie_app/src/presentation/widgets/home.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int index = 0;
-  List<Widget> pages = [
-    Container(
-      color: Colors.amber,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
+    int index = 0;
+    List<Widget> pages = [
+      Home(),
+    ];
+
     return Scaffold(
-      body: pages[index],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+          child: SafeArea(child: pages[index]),
+        ),
+      ),
       backgroundColor: Colors.white10,
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -38,10 +39,10 @@ class _HomePageState extends State<HomePage> {
           rippleColor: Colors.grey.withOpacity(0.5),
           tabBackgroundColor: Colors.white10,
           tabBackgroundGradient:
-              LinearGradient(colors: [Colors.white10, Colors.white30]),
+              const LinearGradient(colors: [Colors.white10, Colors.white30]),
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           gap: 5,
-          tabs: [
+          tabs: const [
             GButton(
               icon: LineIcons.home,
               text: 'Inicio',

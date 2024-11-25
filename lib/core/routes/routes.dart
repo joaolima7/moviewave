@@ -18,7 +18,7 @@ final routes = GoRouter(
       path: '/home',
       pageBuilder: (context, state) {
         return CustomTransitionPage(
-          child: const HomePage(),
+          child: HomePage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return PageTransition(
               type: PageTransitionType.fade,
@@ -34,7 +34,7 @@ final routes = GoRouter(
         path: '/details/:movie',
         pageBuilder: (context, state) {
           final param = state.pathParameters['movie'];
-          return const MaterialPage(
+          return MaterialPage(
             child: HomePage(),
             fullscreenDialog: true,
           );
