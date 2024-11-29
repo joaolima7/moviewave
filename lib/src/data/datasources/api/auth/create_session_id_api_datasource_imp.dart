@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/consts/api_consts.dart';
-import 'package:movie_app/src/data/datasources/datasources/create_session_id_datasource.dart';
+import 'package:movie_app/src/data/datasources/datasources/auth/create_session_id_datasource.dart';
 
 class CreateSessionIdApiDataSourceImp implements CreateSessionIdDataSource {
   @override

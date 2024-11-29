@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/category_entity.dart';
 
 class CategoryCard extends StatelessWidget {
-  final CategoryEntity category; // Aceita uma instância de CategoryEntity
+  final CategoryEntity category;
   final VoidCallback onTap;
 
   const CategoryCard({
@@ -15,8 +15,8 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 180, // Altura do card
-        width: 160, // Largura do card
+        height: 180,
+        width: 160,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.bottomLeft,
@@ -25,24 +25,21 @@ class CategoryCard extends StatelessWidget {
               Colors.white10,
               Colors.grey.shade600,
             ],
-          ), // Gradiente da categoria
-          borderRadius: BorderRadius.circular(20), // Cantos arredondados
+          ),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: Stack(
-          clipBehavior:
-              Clip.none, // Para permitir que a imagem saia do container
+          clipBehavior: Clip.none,
           children: [
-            // Imagem posicionada
             Positioned(
-              top: -20, // Faz a imagem sair do card
-              left: -35, // Ajusta horizontalmente
+              top: -20,
+              left: -35,
               child: Image.asset(
-                category.imagePath, // Imagem da categoria
+                category.imagePath,
                 width: 130,
                 fit: BoxFit.cover,
               ),
             ),
-            // Títulos (alinhados no canto esquerdo inferior)
             Positioned(
               bottom: 20,
               right: 10,
@@ -50,7 +47,7 @@ class CategoryCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    category.title, // Título da categoria
+                    category.title,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -59,7 +56,7 @@ class CategoryCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    category.subtitle, // Subtítulo da categoria
+                    category.subtitle,
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 14,

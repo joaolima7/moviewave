@@ -1,4 +1,4 @@
-import 'package:movie_app/src/data/datasources/datasources/create_session_id_datasource.dart';
+import 'package:movie_app/src/data/datasources/datasources/auth/create_session_id_datasource.dart';
 
 class CreateSessionIdRepositoryImp implements CreateSessionIdDataSource {
   CreateSessionIdDataSource _createSessionIdDataSource;
