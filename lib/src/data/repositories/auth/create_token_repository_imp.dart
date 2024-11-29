@@ -1,4 +1,4 @@
-import 'package:movie_app/src/data/datasources/datasources/create_token_datasource.dart';
+import 'package:movie_app/src/data/datasources/datasources/auth/create_token_datasource.dart';
 import 'package:movie_app/src/domain/repositories/auth/create_token_repository.dart';
 
 class CreateTokenRepositoryImp implements CreateTokenRepository {

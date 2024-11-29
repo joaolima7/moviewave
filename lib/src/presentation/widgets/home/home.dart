@@ -1,56 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:movie_app/src/domain/entities/category_entity.dart';
-import 'package:movie_app/src/domain/entities/movie_entity.dart';
 import 'package:movie_app/src/presentation/components/category_card.dart';
 import 'package:movie_app/src/presentation/components/movie_card.dart';
+import 'package:movie_app/src/presentation/components/text_field_cutom.dart';
+import 'package:movie_app/src/presentation/controllers/home_controllers/movies_popular_controller.dart';
 
-import '../components/text_field_cutom.dart';
-
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final moviesPopularController = GetIt.I.get<MoviesPopularController>();
+
+  @override
+  void initState() {
+    super.initState();
+    moviesPopularController.load();
+  }
 
   @override
   Widget build(BuildContext context) {
     TextEditingController ctrl = TextEditingController();
-
-    // Lista de filmes para "Most searched"
-    final movies = [
-      MovieEntity(
-        id: 1,
-        title: 'Secret Wars',
-        originalTitle: 'Secret Wars',
-        overview: 'A great battle between heroes.',
-        posterPath: '/secret_wars.jpg', // Substitua pelo caminho real
-        backdropPath: '/backdrop.jpg',
-        mediaType: 'movie',
-        adult: false,
-        originalLanguage: 'en',
-        genreIds: [28, 12],
-        popularity: 8.5,
-        releaseDate: '2022-11-25',
-        video: false,
-        voteAverage: 7.8,
-        voteCount: 340,
-      ),
-      MovieEntity(
-        id: 2,
-        title: 'Samaritan',
-        originalTitle: 'Samaritan',
-        overview: 'A retired superhero returns.',
-        posterPath: '/samaritan.jpg',
-        backdropPath: '/backdrop.jpg',
-        mediaType: 'movie',
-        adult: false,
-        originalLanguage: 'en',
-        genreIds: [28, 18],
-        popularity: 9.2,
-        releaseDate: '2022-10-10',
-        video: false,
-        voteAverage: 7.3,
-        voteCount: 420,
-      ),
-      // Adicione mais objetos Movie conforme necessário
-    ];
 
     return SingleChildScrollView(
       child: Column(
@@ -137,34 +114,53 @@ class Home extends StatelessWidget {
           const SizedBox(height: 10),
           SizedBox(
             height: 220,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(left: 15),
-              itemCount: movies.length,
-              itemBuilder: (context, index) {
-                final movie = movies[index];
-                return Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: MovieCard(
-                    movie: movie,
-                    onTap: () {},
-                  ),
+            child: Obx(
+              () {
+                if (moviesPopularController.isLoading.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.white),
+                  );
+                }
+
+                if (moviesPopularController.moviesPopular.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'Nenhum filme encontrado!',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                }
+
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(left: 15),
+                  itemCount: moviesPopularController.moviesPopular.length +
+                      1, // +1 para o botão
+                  itemBuilder: (context, index) {
+                    if (index == moviesPopularController.moviesPopular.length) {
+                      return Center(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const LineIcon(
+                            LineIcons.plus,
+                            color: Colors.white,
+                          ),
+                        ),
+                      );
+                    }
+
+                    // Renderizar um filme normalmente
+                    final movie = moviesPopularController.moviesPopular[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: MovieCard(
+                        movie: movie,
+                        onTap: () {},
+                      ),
+                    );
+                  },
                 );
               },
-            ),
-          ),
-          const SizedBox(height: 10),
-          Center(
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Ver mais',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
             ),
           ),
         ],

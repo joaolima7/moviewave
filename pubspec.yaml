@@ -24,6 +24,7 @@ dependencies:
   concentric_transition: ^1.0.3
   page_transition: ^2.1.0
   line_icons: ^2.0.3
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
